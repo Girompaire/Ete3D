@@ -42,6 +42,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == "targetArea")
         {
+            particleEffect.Instance.onHitEffect(this.transform.position);
             score.addPoint();
             GameObject.Destroy(this.transform.parent.gameObject);
 
@@ -49,6 +50,7 @@ public class Bullet : MonoBehaviour
         else
         {
             if (other.gameObject.tag == "Obstacle")
+                //particleEffect.Instance.onHitEffect(this.transform.position);
                 GameObject.Destroy(this.transform.parent.gameObject);
         }
     }
