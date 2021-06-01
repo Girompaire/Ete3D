@@ -16,10 +16,10 @@ public class deplacement : MonoBehaviour
     {
         Vector3 move = new Vector3();
         if (Input.GetKey(KeyCode.UpArrow))
-            move.y += 0.01f;
+            move.z += 0.01f;
 
         if (Input.GetKey(KeyCode.DownArrow))
-            move.y -= 0.01f;
+            move.z -= 0.01f;
 
 
         if (Input.GetKey(KeyCode.LeftArrow))

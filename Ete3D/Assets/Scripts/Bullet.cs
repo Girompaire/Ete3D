@@ -10,6 +10,9 @@ public class Bullet : MonoBehaviour
     GameObject ScorePoints;
     Score score;
 
+    [SerializeField]
+    private int lifeTime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,15 +28,28 @@ public class Bullet : MonoBehaviour
     {
         // Move our position a step closer to the target.
         this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.forward * speed;
-     }
+
+        lifeTime--;
+
+        if(lifeTime <= 0)
+        {
+            GameObject.Destroy(this.transform.parent.gameObject);
+        }
+    }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "targetArea")
+        if (other.gameObject.tag == "targetArea")
         {
             score.addPoint();
-            GameObject.Destroy(this.gameObject);
+            GameObject.Destroy(this.transform.parent.gameObject);
+
+        }
+        else
+        {
+            if (other.gameObject.tag == "Obstacle")
+                GameObject.Destroy(this.transform.parent.gameObject);
         }
     }
 

@@ -32,7 +32,6 @@ public class Tir : MonoBehaviour
             {
                 Instantiate(projectile, arc.transform.position, Quaternion.identity);
 
-
             }
         }
 

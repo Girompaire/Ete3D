@@ -6,6 +6,7 @@ TagManager:
   tags:
   - targetArea
   - scorePoints
+  - Obstacle
   layers:
   - Default
   - TransparentFX
