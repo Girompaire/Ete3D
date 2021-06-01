@@ -1,26 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField]
-    private int speed = 0;
-
-    private Vector3 dir;
+    private int speed;
+    GameObject targetArea;
+    GameObject ScorePoints;
+    Score score;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        speed = 8;
+        targetArea = GameObject.FindGameObjectWithTag("targetArea");
+        score = GameObject.FindGameObjectWithTag("scorePoints").GetComponent<Score>();
+        this.gameObject.AddComponent<Rigidbody>();
+        this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Move our position a step closer to the target.
-        float step = speed * Time.deltaTime; // calculate distance to move
-        dir = new Vector3 (0, 0, 1);
-        transform.position = Vector3.MoveTowards(this.transform.position, dir, step);
+        this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.forward * speed;
+     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "targetArea")
+        {
+            score.addPoint();
+            GameObject.Destroy(this.gameObject);
+        }
     }
+
 }

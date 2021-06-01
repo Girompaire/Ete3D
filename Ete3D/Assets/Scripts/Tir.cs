@@ -24,6 +24,8 @@ public class Tir : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (canShoot)
         {
             if (Input.GetMouseButtonDown(0))
